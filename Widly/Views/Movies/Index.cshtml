@@ -1,0 +1,22 @@
+﻿@model Widly.Views.ViewModel.MovieViewModel
+
+
+<br/>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <td class="h4">
+                Movies
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model.Movies)
+        {
+            <tr>
+                <td>@movie.Name</td>
+            </tr>
+        }
+       
+    </tbody>
+</table>

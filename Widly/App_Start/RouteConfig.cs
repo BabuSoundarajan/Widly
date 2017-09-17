@@ -13,6 +13,14 @@ namespace Widly
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.MapRoute(
+            //    name: "MoviesByReleaseDate",
+            //    url: "movies/released/{year}/{month}",
+            //    defaults:new {Controller="Movies", action = "ByReleaseDate", year=@"2015|2016", month=@"\d{2}"}
+            //    );
+
+            routes.MapMvcAttributeRoutes();
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
