@@ -1,12 +1,22 @@
-﻿@model Widly.Views.ViewModel.CustomerViewModel
+﻿@model IEnumerable<Widly.Models.Customer>
 
 <br/>
 <h3>Customers</h3>
 <table class="table table-striped table-hover">
-    @foreach (var customer in Model.customers)
-    {
+    <thead>
         <tr>
-            <td>@Html.ActionLink(customer.Name,"Details",new {Id=customer.Id})</td>
+            <th>Customers</th>
+            <th>MemberShip Type</th>
         </tr>
-    } 
+    </thead>
+
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(customer.Name, "Details", new { Id = customer.Id })</td>
+                <td>@customer.MembershipType.Name</td>
+            </tr>
+        }
+    </tbody>
 </table>

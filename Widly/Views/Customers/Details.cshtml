@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Widly.Models.Customer
+
+<h2>Details</h2>
+@if (Model.Name != null)
+{
+    <h4>@Model.Name</h4>
+}
+else
+{
+    <h4>No details for the customer id @Model.Id.</h4>
+}
+
+
