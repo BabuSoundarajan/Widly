@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Widly.Models
 {
@@ -10,6 +11,7 @@ namespace Widly.Models
         [StringLength(255)]
         public string Name { get; set; }
         public bool IsSubscribedToNewsLetter { get; set; }
+        public DateTime? BirthDate { get; set; }
         public MemberShipType MembershipType { get; set; }
     }
 }

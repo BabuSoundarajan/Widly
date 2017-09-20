@@ -9,7 +9,7 @@ namespace Widly.Views.Customers
 
     public class CustomersController : Controller
     {
-        private ApplicationDbContext _context;
+        ApplicationDbContext _context;
 
         public CustomersController()
         {

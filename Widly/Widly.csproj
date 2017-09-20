@@ -233,9 +233,22 @@
     <Compile Include="Migrations\201709181343349_UpdateNameInMembershiptTypes.Designer.cs">
       <DependentUpon>201709181343349_UpdateNameInMembershiptTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709191415007_AddBirthDateColumn.cs" />
+    <Compile Include="Migrations\201709191415007_AddBirthDateColumn.Designer.cs">
+      <DependentUpon>201709191415007_AddBirthDateColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709191433495_AddedGenreTable.cs" />
+    <Compile Include="Migrations\201709191433495_AddedGenreTable.Designer.cs">
+      <DependentUpon>201709191433495_AddedGenreTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709191442098_SeedGenreTable.cs" />
+    <Compile Include="Migrations\201709191442098_SeedGenreTable.Designer.cs">
+      <DependentUpon>201709191442098_SeedGenreTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MemberShipType.cs" />
@@ -351,6 +364,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709181343349_UpdateNameInMembershiptTypes.resx">
       <DependentUpon>201709181343349_UpdateNameInMembershiptTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709191415007_AddBirthDateColumn.resx">
+      <DependentUpon>201709191415007_AddBirthDateColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709191433495_AddedGenreTable.resx">
+      <DependentUpon>201709191433495_AddedGenreTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709191442098_SeedGenreTable.resx">
+      <DependentUpon>201709191442098_SeedGenreTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

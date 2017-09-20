@@ -1,27 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Widly.Models;
-using Widly.Views.ViewModel;
 
 namespace Widly.Controllers
 {
     public class MoviesController : Controller
     {
+        ApplicationDbContext _context;
+
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
         // GET: Movies
         public ActionResult Index()
         {
-            var movies = new List<Movie> {
-                new Movie{ Name = "Shrek!" },
-                new Movie{ Name = "Sherin!" }
-            };
-           
-            var viewModel = new MovieViewModel();
-            viewModel.Movies = movies;
-            
-            return View(viewModel);
+            var movies = _context.Movies.Include(m => m.GenreType).ToList();
+
+            return View(movies);
         }
 
         [Route("movies/released/{year}/{month}")]

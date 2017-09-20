@@ -9,11 +9,14 @@
 <h2>Details</h2>
 @if (Model.Name != null)
 {
-    <h4>@Model.Name</h4>
+    <li>@Model.Name</li>
+    
 }
-else
+
+@if (Model.BirthDate.HasValue)
 {
-    <h4>No details for the customer id @Model.Id.</h4>
+    <li>@Model.BirthDate.Value.ToShortDateString()</li>
 }
+
 
 
