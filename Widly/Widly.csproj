@@ -245,6 +245,10 @@
     <Compile Include="Migrations\201709191442098_SeedGenreTable.Designer.cs">
       <DependentUpon>201709191442098_SeedGenreTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709201336289_ChangingGenreTableName.cs" />
+    <Compile Include="Migrations\201709201336289_ChangingGenreTableName.Designer.cs">
+      <DependentUpon>201709201336289_ChangingGenreTableName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -320,6 +324,7 @@
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -373,6 +378,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709191442098_SeedGenreTable.resx">
       <DependentUpon>201709191442098_SeedGenreTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709201336289_ChangingGenreTableName.resx">
+      <DependentUpon>201709201336289_ChangingGenreTableName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -21,10 +21,10 @@ namespace Widly.Controllers
             return View(movies);
         }
 
-        [Route("movies/released/{year}/{month}")]
-        public ActionResult ByReleaseDate(int? year, int? month)
+        public ActionResult Details(int Id)
         {
-            return Content(year + "/" + month);
+            var movie = _context.Movies.Include(m => m.GenreType).Where(m => m.Id == Id).FirstOrDefault();
+            return View(movie);
         }
     }
 }

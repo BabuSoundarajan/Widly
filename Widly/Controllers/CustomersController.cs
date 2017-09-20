@@ -21,7 +21,7 @@ namespace Widly.Views.Customers
         {
             var customers = _context.Customers.Include(c => c.MembershipType).ToList();
 
-            return View(customers);
+            return View(nameof(CustomersController.Index), customers);
         }
 
         public ActionResult Details(int id)

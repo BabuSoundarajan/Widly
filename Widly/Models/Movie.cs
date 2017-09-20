@@ -10,6 +10,6 @@ namespace Widly.Models
         public DateTime ReleaseDate { get; set; }
         public DateTime DateAdded { get; set; }
         public int Stock { get; set; }
-        public Genre GenreType { get; set; }
+        public GenreType GenreType { get; set; }
     }
 }
