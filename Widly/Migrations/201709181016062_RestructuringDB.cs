@@ -7,7 +7,7 @@ namespace Widly.Migrations
     {
         public override void Up()
         {
-            DropColumn("dbo.Customers", "MembershipTypeId");
+           // DropColumn("dbo.Customers", "MembershipTypeId");
         }
         
         public override void Down()

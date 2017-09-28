@@ -10,7 +10,7 @@ namespace Widly.Migrations
                 "dbo.MemberShipTypes",
                 c => new
                 {
-                    Id = c.Int(nullable: false, identity: true),
+                    Id = c.Byte(nullable: false, identity: true),
                     SignUpFee = c.Short(nullable: false),
                     DurationInMonths = c.Byte(nullable: false),
                     DiscountRate = c.Byte(nullable: false),
@@ -18,17 +18,17 @@ namespace Widly.Migrations
                 .PrimaryKey(t => t.Id);
 
             AddColumn("dbo.Customers", "MemberShipTypeId", c => c.Byte(nullable: false));
-            CreateIndex("dbo.Customers", "MemberShipType_Id");
+            CreateIndex("dbo.Customers", "MemberShipTypeId");
             AddForeignKey("dbo.Customers", "MemberShipTypeId", "dbo.MemberShipTypes", "Id");
         }
 
         public override void Down()
         {
-            DropForeignKey("dbo.Customers", "MemberShipType_Id", "dbo.MemberShipTypes");
-            DropIndex("dbo.Customers", new[] { "MemberShipType_Id" });
-            DropColumn("dbo.Customers", "MemberShipType_Id");
-            DropColumn("dbo.Customers", "MemberShipTypeId");
-            DropTable("dbo.MemberShipTypes");
+            //DropForeignKey("dbo.Customers", "MemberShipTypeId", "dbo.MemberShipTypes");
+           // DropIndex("dbo.Customers", new[] { "MemberShipTypeId" });
+            //DropColumn("dbo.Customers", "MemberShipTypeId");
+            //DropColumn("dbo.Customers", "MemberShipTypeId");
+           // DropTable("dbo.MemberShipTypes");
         }
     }
 }

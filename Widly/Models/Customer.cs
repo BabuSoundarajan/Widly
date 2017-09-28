@@ -13,5 +13,6 @@ namespace Widly.Models
         public bool IsSubscribedToNewsLetter { get; set; }
         public DateTime? BirthDate { get; set; }
         public MemberShipType MembershipType { get; set; }
+        public byte MembershipTypeId { get; set; }
     }
 }

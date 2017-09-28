@@ -6,15 +6,15 @@ namespace Widly.Migrations
     {
         public override void Up()
         {
-            DropIndex("dbo.Customers", new[] { "MemberShipType_Id" });
-            CreateIndex("dbo.Customers", "MembershipType_Id");
+            DropIndex("dbo.Customers", new[] { "MemberShipTypeId" });
+            CreateIndex("dbo.Customers", "MembershipTypeId");
         }
 
         public override void Down()
         {
-            DropTable("dbo.customers");
-            DropIndex("dbo.Customers", new[] { "MembershipType_Id" });
-            CreateIndex("dbo.Customers", "MemberShipType_Id");
+            //DropTable("dbo.customers");
+            //DropIndex("dbo.Customers", new[] { "MembershipTypeId" });
+            //CreateIndex("dbo.Customers", "MemberShipTypeId");
         }
     }
 }

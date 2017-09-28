@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Web.Mvc;
 using Widly.Models;
+using Widly.Models.ViewModel;
+using Widly.Views.ViewModel;
 
 namespace Widly.Views.Customers
 {
@@ -29,5 +31,34 @@ namespace Widly.Views.Customers
             var customers = _context.Customers.Where(s => s.Id == id).FirstOrDefault();
             return View(nameof(CustomersController.Details), customers);
         }
+        public ActionResult New()
+        {
+            var membershipTypes = _context.MembershipType.ToList();
+            var viewModel = new CustomerFormViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+
+            return View("CustomerForm", viewModel);
+        }
+
+        [HttpPost]
+      public ActionResult Save(Customer customer)
+      {
+          if (customer.Id == 0)
+              _context.Customers.Add(customer);
+          else
+          {
+              var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+              customerInDb.Name = customer.Name;
+              customerInDb.BirthDate = customer.BirthDate;
+              customerInDb.MembershipTypeId = customer.MembershipTypeId;
+              customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
+          }
+
+          _context.SaveChanges();
+
+          return RedirectToAction("Index", "Customers");
+      }
     }
 }
