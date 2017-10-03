@@ -4,7 +4,7 @@ namespace Widly.Models
 {
     public class GenreType
     {
-        public int Id { get; set; }
+        public byte Id { get; set; }
         public String Name { get; set; }
     }
 }

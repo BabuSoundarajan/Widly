@@ -11,6 +11,7 @@ namespace Widly.Views.Customers
 
     public class CustomersController : Controller
     {
+
         ApplicationDbContext _context;
 
         public CustomersController()
@@ -37,6 +38,22 @@ namespace Widly.Views.Customers
             var viewModel = new CustomerFormViewModel
             {
                 MembershipTypes = membershipTypes
+            };
+
+            return View("CustomerForm", viewModel);
+        }
+
+        public ActionResult Edit(int Id)
+        {
+            var customer = _context.Customers.Single(c => c.Id == Id);
+
+            if (customer == null)
+                return HttpNotFound();
+
+            var viewModel = new CustomerFormViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipType.ToList()
             };
 
             return View("CustomerForm", viewModel);
