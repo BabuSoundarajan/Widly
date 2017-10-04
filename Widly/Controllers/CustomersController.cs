@@ -37,6 +37,7 @@ namespace Widly.Views.Customers
             var membershipTypes = _context.MembershipType.ToList();
             var viewModel = new CustomerFormViewModel
             {
+                Customer = new Customer(),
                 MembershipTypes = membershipTypes
             };
 
@@ -60,22 +61,33 @@ namespace Widly.Views.Customers
         }
 
         [HttpPost]
-      public ActionResult Save(Customer customer)
-      {
-          if (customer.Id == 0)
-              _context.Customers.Add(customer);
-          else
-          {
-              var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
-              customerInDb.Name = customer.Name;
-              customerInDb.BirthDate = customer.BirthDate;
-              customerInDb.MembershipTypeId = customer.MembershipTypeId;
-              customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
-          }
+        public ActionResult Save(Customer customer)
+        {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerFormViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipType.ToList()
+                };
 
-          _context.SaveChanges();
+                return View("CustomerForm", viewModel);
+            }
 
-          return RedirectToAction("Index", "Customers");
-      }
+            if (customer.Id == 0)
+                _context.Customers.Add(customer);
+            else
+            {
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+                customerInDb.Name = customer.Name;
+                customerInDb.BirthDate = customer.BirthDate;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Customers");
+        }
     }
 }

@@ -45,6 +45,10 @@ namespace Widly.Controllers
         [HttpPost]
         public ActionResult Save(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+              
+            }
             if (movie.Id == 0)
             {
                 movie.DateAdded = DateTime.Now;
