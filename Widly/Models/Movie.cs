@@ -16,6 +16,8 @@ namespace Widly.Models
 
         [Display(Name = "Date Added")]
         public DateTime? DateAdded { get; set; }
+        [Required]
+        [Range(1,20,ErrorMessage ="Number should be in the range of 1 to 20")]
         public int Stock { get; set; }
         public GenreType GenreType { get; set; }
         public byte GenreTypeId { get; set; }

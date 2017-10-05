@@ -43,11 +43,18 @@ namespace Widly.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
             if (!ModelState.IsValid)
             {
-              
+                var viewModel = new MovieFormViewModel
+                {
+                    Movie = new Movie(),
+                    GenreTypes = _context.GenreType.ToList()
+                };
+
+                return View("MovieForm", viewModel);
             }
             if (movie.Id == 0)
             {
