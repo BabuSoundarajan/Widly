@@ -34,7 +34,7 @@ namespace Widly.Controllers
             ViewBag.Operation = "Add";
             var genreTypes = _context.GenreType.ToList();
 
-            var movieViewModel = new MovieFormViewModel
+            var movieViewModel = new MovieFormViewModel()
             {
                 GenreTypes = genreTypes
             };
@@ -48,10 +48,9 @@ namespace Widly.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new MovieFormViewModel
+                var viewModel = new MovieFormViewModel(movie)
                 {
-                    Movie = new Movie(),
-                    GenreTypes = _context.GenreType.ToList()
+                   GenreTypes = _context.GenreType.ToList()
                 };
 
                 return View("MovieForm", viewModel);
