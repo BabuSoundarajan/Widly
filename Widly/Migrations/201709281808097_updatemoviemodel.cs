@@ -17,7 +17,7 @@ namespace Widly.Migrations
             CreateIndex("dbo.Movies", "GenreTypeId");
             AddForeignKey("dbo.Movies", "GenreTypeId", "dbo.GenreTypes", "Id", cascadeDelete: true);
         }
-        
+
         public override void Down()
         {
             DropForeignKey("dbo.Movies", "GenreTypeId", "dbo.GenreTypes");

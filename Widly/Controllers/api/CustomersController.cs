@@ -1,9 +1,11 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Widly.Dtos;
 using Widly.Models;
 
 namespace Widly.Controllers.Api
@@ -19,39 +21,42 @@ namespace Widly.Controllers.Api
 
         //GET /Api/Customers
 
-        public IEnumerable<Customer> GetCustomers()
+        public IEnumerable<CustomerDto> GetCustomers()
         {
-            return _applicationDbContext.Customers.ToList();
+            return _applicationDbContext.Customers.ToList().Select(Mapper.Map<Customer,CustomerDto>);
         }
 
         //GET /Api/Customers/1
-        public Customer GetCustomer(int id)
+        public IHttpActionResult GetCustomer(int id)
         {
             var customer = _applicationDbContext.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
-            return customer;
+            return Ok(Mapper.Map<Customer,CustomerDto>(customer));
         }
 
         //POST /Api/Customers
         [HttpPost]
-        public Customer CreateCustomer(Customer customer)
+        public IHttpActionResult CreateCustomer(CustomerDto customerDto)
         {
             if (ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
+            var customer = Mapper.Map<CustomerDto, Customer>(customerDto);
 
             _applicationDbContext.Customers.Add(customer);
             _applicationDbContext.SaveChanges();
 
-            return customer;
+            customerDto.Id = customer.Id;
+            return Created(new Uri(Request.RequestUri + "/" + customer.Id),customerDto);
+
         }
 
         //PUT /Api/Customers/1
 
         [HttpPut]
-        public Customer UpdateCustomer(int id, Customer customer)
+        public void UpdateCustomer(int id, CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -61,12 +66,9 @@ namespace Widly.Controllers.Api
             if (customerInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            customerInDb.Name = customer.Name;
-            customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
-            customerInDb.MembershipTypeId = customer.MembershipTypeId;
-            customerInDb.BirthDate = customer.BirthDate;
+            Mapper.Map(customerDto,customerInDb);
 
-            return customer;
+            _applicationDbContext.SaveChanges();
         }
 
         //DELETE /Api/cusomters/1
