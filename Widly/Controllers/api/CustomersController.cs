@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -23,7 +24,9 @@ namespace Widly.Controllers.Api
 
         public IEnumerable<CustomerDto> GetCustomers()
         {
-            return _applicationDbContext.Customers.ToList().Select(Mapper.Map<Customer,CustomerDto>);
+            return _applicationDbContext.Customers.
+                    Include(c=>c.MembershipType).
+                    ToList().Select(Mapper.Map<Customer,CustomerDto>);
         }
 
         //GET /Api/Customers/1
@@ -72,6 +75,7 @@ namespace Widly.Controllers.Api
         }
 
         //DELETE /Api/cusomters/1
+        [HttpDelete]
         public void DeleteCustomer(int id)
         {
             var customerInDb = _applicationDbContext.Customers.SingleOrDefault(c => c.Id == id);
@@ -80,6 +84,7 @@ namespace Widly.Controllers.Api
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
             _applicationDbContext.Customers.Remove(customerInDb);
+            _applicationDbContext.SaveChanges();
         }
     }
 }

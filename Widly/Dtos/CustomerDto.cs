@@ -21,5 +21,7 @@ namespace Widly.Dtos
 
         [Required]
         public byte MembershipTypeId { get; set; }
+
+        public MembershipTypeDto MembershipType { get; set; }
     }
 }

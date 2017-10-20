@@ -22,9 +22,7 @@ namespace Widly.Views.Customers
         // GET: Customers
         public ActionResult Index()
         {
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-
-            return View(nameof(CustomersController.Index), customers);
+            return View();
         }
 
         public ActionResult Details(int id)

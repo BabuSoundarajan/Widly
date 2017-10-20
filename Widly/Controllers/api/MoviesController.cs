@@ -72,6 +72,7 @@ namespace Widly.Controllers.api
         }
 
         // DELETE: api/Movies/5
+        [HttpDelete]
         public void DeleteMovie(int id)
         {
             var movieInDb = _applicationDbContext.Movies.SingleOrDefault(c => c.Id == id);
@@ -80,6 +81,7 @@ namespace Widly.Controllers.api
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
             _applicationDbContext.Movies.Remove(movieInDb);
+            _applicationDbContext.SaveChanges();
         }
     }
 }
