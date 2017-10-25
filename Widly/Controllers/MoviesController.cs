@@ -7,20 +7,30 @@ using Widly.Views.ViewModel;
 
 namespace Widly.Controllers
 {
+    [Authorize(Roles =RoleName.CanChangeMovies)]
     public class MoviesController : Controller
     {
         ApplicationDbContext _context;
+
+        protected override void Dispose(bool diposing)
+        {
+            _context.Dispose();
+        }
 
         public MoviesController()
         {
             _context = new ApplicationDbContext();
         }
         // GET: Movies
+       
+        [AllowAnonymous]
+       
         public ActionResult Index()
         {
-            var movies = _context.Movies.Include(m => m.GenreType).ToList();
+            if(User.IsInRole(RoleName.CanChangeMovies))
+                return View("List");
 
-            return View(movies);
+            return View("ReadOnlyList");
         }
 
         public ActionResult Details(int Id)

@@ -8,6 +8,15 @@ namespace Widly.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name ="Driving License")]
+        public string DrivingLicense { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        [Display(Name ="Phone Number")]
+        public string PhoneNumber { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -64,6 +73,15 @@ namespace Widly.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name ="Driving License")]
+        public string DrivingLicense { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        [Display(Name ="Phone Number")]
+        public string PhoneNumber { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

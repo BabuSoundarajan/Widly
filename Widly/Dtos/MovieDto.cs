@@ -22,7 +22,9 @@ namespace Widly.Dtos
         [Range(1, 20, ErrorMessage = "Number should be in the range of 1 to 20")]
         public int Stock { get; set; }
 
+        public GenreTypeDto GenreType { get; set; }
         [Required]
         public byte GenreTypeId { get; set; }
+       
     }
 }

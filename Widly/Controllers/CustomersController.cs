@@ -8,7 +8,7 @@ using Widly.Views.ViewModel;
 namespace Widly.Views.Customers
 {
 
-
+    [Authorize]
     public class CustomersController : Controller
     {
 

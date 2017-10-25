@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -22,7 +23,8 @@ namespace Widly.Controllers.api
         // GET: api/Movies
         public IEnumerable<MovieDto> GetMovies()
         {
-            return _applicationDbContext.Movies.ToList().Select(Mapper.Map<Movie, MovieDto>);
+            return _applicationDbContext.Movies.
+                Include(g=>g.GenreType).ToList().Select(Mapper.Map<Movie, MovieDto>);
         }
 
         // GET: api/Movies/5

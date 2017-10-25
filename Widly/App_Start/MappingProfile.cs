@@ -15,6 +15,7 @@ namespace Widly.App_Start
             Mapper.CreateMap<Customer, CustomerDto>();
             Mapper.CreateMap<MemberShipType, MembershipTypeDto>();
             Mapper.CreateMap<Movie, MovieDto>();
+            Mapper.CreateMap<GenreType, GenreTypeDto>();
 
 
             Mapper.CreateMap<CustomerDto, Customer>()

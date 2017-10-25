@@ -1,6 +1,5 @@
-﻿@model IEnumerable<Widly.Models.Movie>
-
-
+﻿
+<h2>Movies</h2>
 <br />
 
 @Html.ActionLink("Add New", "New", null, new { @class = "btn btn-primary" })
@@ -20,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var movie in Model)
+        @*@foreach (var movie in Model)
         {
             <tr>
                 <td>@Html.ActionLink(movie.Name, "Details", new { Id = movie.Id })  </td>
@@ -29,7 +28,7 @@
                     <button data-movie-id="@movie.Id" class="btn-link js-delete">Delete</button>
                 </td>
             </tr>
-        }
+        }*@
 
     </tbody>
 </table>
@@ -38,6 +37,35 @@
 
     <script>
         $(document).ready(function () {
+
+            var table = $("#movies").DataTable({
+                ajax: {
+                    url: "/api/movies",
+                    dataSrc:''
+                },
+
+                columns: [{
+                    data: "name",
+                    render: function (data, type, movie) {
+                        return "<a href='/movies/edit/" + movie.id + "'>" + movie.name + "</a>"
+                    }
+                },
+                    {
+                        data: "genreType.name"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn-link js-delete' data-movie-id=" + data + ">Delete</button>"
+                        }
+                    }
+
+
+                ]
+            });
+
+
+
             $("#movies").on("click",".js-delete", function () {
 
                 var button = $(this);
