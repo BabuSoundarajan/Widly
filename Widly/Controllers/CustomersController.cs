@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using Widly.Models;
+using Widly.Models.IdentityModels;
 using Widly.Models.ViewModel;
 using Widly.Views.ViewModel;
 

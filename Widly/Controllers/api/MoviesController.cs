@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Widly.Dtos;
 using Widly.Models;
+using Widly.Models.IdentityModels;
 
 namespace Widly.Controllers.api
 {

@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using Widly.Models;
+using Widly.Models.IdentityModels;
 using Widly.Views.ViewModel;
 
 namespace Widly.Controllers

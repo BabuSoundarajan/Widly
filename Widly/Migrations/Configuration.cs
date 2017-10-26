@@ -5,14 +5,14 @@ namespace Widly.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Widly.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Widly.Models.IdentityModels.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Widly.Models.ApplicationDbContext context)
+        protected override void Seed(Widly.Models.IdentityModels.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
